@@ -5,6 +5,10 @@ import VueRouter from 'vue-router'
 import MainPage from "./view/main/MainPage.vue";
 
 import UserModify from "./view/user/UserModify.vue";
+// Справочники
+import CountryList from "./view/dictionary/CountryList.vue";
+
+import WeatherList from "./view/weather/WeatherList.vue";
 
 import Login from "./pages/Login.vue";
 
@@ -12,6 +16,8 @@ Vue.use(VueRouter)
 let router = new VueRouter({
     routes: [
         {path:'/',component: MainPage,meta: {authRequired: true}},
+        {path:'/country_list',component: CountryList,meta: {authRequired: true}},
+        {path:'/travel_list',component: WeatherList,meta: {authRequired: true}},
         {path:'/user_modify',component: UserModify},
         // {path:'/redactor_groups',component: ModeratorGroupsView,meta: {authRequired: true}},
 

@@ -1,6 +1,10 @@
 package md.weatherAdventure.service;
 
-public interface ModelMapperService<T,E> {
-    T entityToDto (E entity);
-    E dtoToEntity(T dto);
+import java.util.List;
+import java.util.Map;
+
+public interface ModelMapperService<D,E> {
+    D entityToDto (E entity);
+    E dtoToEntity(D dto);
+    E FromMapToEntity(Map map);
 }

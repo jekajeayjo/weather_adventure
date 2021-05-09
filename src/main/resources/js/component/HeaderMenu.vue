@@ -8,11 +8,12 @@ app
         <router-link to="/">   <div class="d-flex align-center" >
             <v-img
                     alt="Vuetify Logo"
-                    class="shrink mr-2"
+                    class="shrink mr-2 image-logo"
                     contain
-                    src="../../static/images/gerb_pgu.png"
+                    src="../static/images/logo.png"
                     transition="scale-transition"
-                    width="100"
+                    width="165"
+                    height="60"
             />
         </div>
         </router-link>
@@ -40,5 +41,8 @@ app
 </script>
 
 <style scoped>
-
+.image-logo{
+    /*background-image: url("images/logo.png");*/
+    content: url('../../../resources/static/images/logo.png');
+}
 </style>

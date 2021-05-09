@@ -19,7 +19,7 @@ public class UserServiceIMpl implements UserService {
     ModelMapperService<UserDto, UserEntity> mapperService;
 
     @Autowired
-    @Qualifier("user")
+    @Qualifier("userMapper")
     public void setMapperService(ModelMapperService<UserDto, UserEntity> mapperService) {
         this.mapperService = mapperService;
     }

@@ -7,8 +7,8 @@ import org.springframework.web.client.RestTemplate;
 @Service("rest")
 public class SendToGateSericeImpl implements SendToGateService {
     @Override
-    public Object sendGetRequest(String url) {
+    public String sendGetRequest(String url) {
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.getForEntity(url, String.class);
+        return restTemplate.getForEntity(url, String.class).getBody();
     }
 }

@@ -1,5 +1,5 @@
 package md.weatherAdventure.service;
 
 public interface SendToGateService {
-    public Object sendGetRequest(String url);
+    public String sendGetRequest(String url);
 }

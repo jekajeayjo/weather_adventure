@@ -8,6 +8,7 @@ export default {
         data: null,
         error: null,
         processing: false,
+        gateUrl:'/weatheradventure'
     },
     mutations: {
         SET_PROCESSING(state, payload) {
@@ -38,8 +39,9 @@ export default {
         },
         SEND_REQUEST_GET({commit, getters}, payload) {
             // console.log('main payload',payload)
+            var url=getters.getGateUrl+payload.url
             return new Promise((resolve, reject) => {
-                Vue.axios.get(payload.url, {
+                Vue.axios.get(url, {
                     headers: {Authorization: getters.getToken}
                 })
                     .then(resp => {
@@ -71,6 +73,32 @@ export default {
                     reject(err)
                 })
             });
+        },
+        GET_GENERAL_REQUEST({dispatch}, payload) {
+            dispatch('SEND_REQUEST_GET', payload)
+                .then(resolve => {
+                        console.log(resolve)
+                        payload.setList(resolve)
+
+                    }
+                )
+        },
+        POST_GENERAL_REQUEST({dispatch}, payload) {
+            if (profile == 'test') {
+                payload.url = test_server + payload.url
+            } else {
+                payload.url = deploy_server + payload.url
+            }
+            dispatch('SEND_REQUEST_POST', {
+                url: payload.url,
+                data: payload.data
+            })
+                .then(resolve => {
+
+                        payload.getSucces(resolve)
+
+                    }
+                )
         },
         SEND_REQUEST_DELETE({commit}, payload) {
             // console.log('main payload',payload)
@@ -115,6 +143,7 @@ export default {
     },
     getters: {
         getData: (state) => state.data,
-        getError: (state) => state.error
+        getError: (state) => state.error,
+        getGateUrl:(state)=>state.gateUrl
     }
 }
