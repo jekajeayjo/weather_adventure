@@ -34,6 +34,28 @@
       }"
         >
 
+            <template v-slot:item.status="{ item }">
+                <v-tooltip
+
+                        top
+                >
+                    <template v-slot:activator="{ on, attrs }">
+                        <v-icon
+                                v-bind="attrs"
+
+                                v-on="on"
+                                small
+                                class="mr-2"
+
+                        >
+                            {{item.status.icon}}
+                        </v-icon>
+                    </template>
+                    <span>{{item.status.description}}</span>
+                </v-tooltip>
+
+
+            </template>
             <template v-slot:expanded-item="{ headers, item }">
                 <td :colspan="headers.length">
                     <v-simple-table>
@@ -129,10 +151,21 @@
             on: '',
             search: '',
             dialog: false,
+
+            statusItem: {
+                code: '',
+                icon: ''
+            },
+            statusList: [
+                {code: 'Clear', icon: 'wb_sunny', description: 'Можно взять очки'},
+                {code: 'clear', icon: 'umbrella', description: 'Возьми Зонтик'},
+                {code: 'Clouds', icon: 'cloud', description: 'Возьми Мастерку'}
+            ],
             headers: [
                 {text: 'Страна', align: 'start', sortable: false, value: 'countryName',},
                 {text: 'Город', value: 'cityName'},
                 {text: 'Время создания', value: 'date'},
+                {text: 'Статус', value: 'status'},
                 // {text: 'Температура', value: 'countrвyCode'},
                 // {text: 'Погода', value: 'fat'},
 
@@ -176,21 +209,29 @@
             },
             showWeatherList(rows) {
                 console.log(rows),
+                    rows.forEach(row => {
+                        if (row.main == 'Clear') {
+                            row.status = this.statusList.find(item => item.code == 'Clear')
+                        } else if (row.main == 'Clouds') {
+                            row.status = this.statusList.find(item => item.code == 'Clouds')
+                        }
+                    })
                     this.weatherList = rows
+                console.log(this.weatherList)
             },
 
             save(cityId) {
                 this.$store.dispatch('GET_GENERAL_REQUEST', {
                     data: '',
-                    url: '/travel/save/'+cityId,
+                    url: '/travel/save/' + cityId,
                     setList: this.saveSucces
                 })
 
             },
             saveSucces(item) {
                 this.getWeatherList(),
-              console.log(item)
-                this.dialog=false
+                    console.log(item)
+                this.dialog = false
 
             },
             showItem(item) {

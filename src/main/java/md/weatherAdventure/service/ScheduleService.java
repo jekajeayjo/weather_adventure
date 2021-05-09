@@ -4,4 +4,5 @@ public interface ScheduleService {
 
 
     void scheduleReadFromFiles();
+    void evictCache();
 }

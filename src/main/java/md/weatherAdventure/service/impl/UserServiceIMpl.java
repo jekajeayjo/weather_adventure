@@ -41,7 +41,8 @@ public class UserServiceIMpl implements UserService {
 
     @Override
     public UserEntity findById(Long id) {
-        return userRepository.getOne(id);
+//        UserEntity entity=userRepository.findById(id);
+        return userRepository.findById(id).get();
     }
 
     @Override

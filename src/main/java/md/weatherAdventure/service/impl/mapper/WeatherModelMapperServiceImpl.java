@@ -32,7 +32,7 @@ public class WeatherModelMapperServiceImpl implements ModelMapperService<Weather
     }
 
     @Override
-    @CachePut(value = "weather", key = "#entity.id")
+    @Cacheable(value = "weather", key = "#entity")
     public WeatherDto entityToDto(WeatherEntity entity) {
         WeatherDto dto = new WeatherDto();
         dto.setId(entity.getId());
@@ -65,6 +65,7 @@ public class WeatherModelMapperServiceImpl implements ModelMapperService<Weather
      * TODO FIX FROM MAP TO ENTITY
      * */
     @Override
+    @CachePut(value = "weatherMap",key="#map")
     public WeatherEntity FromMapToEntity(Map map) {
         WeatherEntity weatherEntity = new WeatherEntity();
         map.forEach((key, value) ->

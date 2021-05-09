@@ -79,8 +79,19 @@ public class WeatherServiceImpl implements WeatherService {
     }
 
     @Override
-    @Cacheable(value = "weathers",key = "#id")
+    @Cacheable(value = "weathers")
+    public Set<WeatherDto> listTest() {
+        System.out.println("formDb");
+        List<WeatherEntity> entities = weatherRepository.findAll();
+        Set<WeatherDto> set = entities.stream()
+                .map(WeatherDto::new).collect(Collectors.toSet());
+        return set;
+    }
+
+    @Override
+    @Cacheable(value = "weathers", key = "#id")
     public WeatherDto save(Long id) {
+        System.out.println("get From gate");
         Gson gson = new Gson();
         CityEntity cityEntity = cityService.findById(id);
         StringBuilder stringBuilder = new StringBuilder();
@@ -99,7 +110,7 @@ public class WeatherServiceImpl implements WeatherService {
                                 .sendGetRequest(stringBuilder
                                         .toString()), Map.class));
         weatherEntity.setUserEntity(userService.findById(jwtTokenProvider.getId()));
-        weatherEntity.setCityEntity(cityService.findById(id));
+        weatherEntity.setCityEntity(cityEntity);
         weatherEntity.setLocalDateTime(LocalDateTime.now());
         return modelMapperService
                 .entityToDto(weatherRepository
