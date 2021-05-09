@@ -1,6 +1,6 @@
 # weather_adventure
 
-###In this content 
+### In this content 
 #### Backend
 - Spring Cache
 - Spring Secutiry
@@ -18,7 +18,7 @@
 #### User can get weather from gate  and save weather in db  
 ![Check_user](https://user-images.githubusercontent.com/37213273/117588958-8baecc80-b12f-11eb-88cf-621eaf2b5dca.gif)
 
-##Functions
+## Functions
 -Each hour- prgram read from two json file country and city . realize Schedule
 - when user get weather he get detail information weather of the city he get from cache
 - Each cache has own live
