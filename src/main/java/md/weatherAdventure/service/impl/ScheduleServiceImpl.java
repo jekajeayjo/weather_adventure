@@ -75,7 +75,8 @@ public class ScheduleServiceImpl implements ScheduleService {
             evict = {
                     @CacheEvict(value = "weathers", allEntries = true),
                     @CacheEvict(value = "cities", allEntries = true),
-                    @CacheEvict(value = "countries", allEntries = true)
+                    @CacheEvict(value = "countries", allEntries = true),
+                    @CacheEvict(value = "menu", allEntries = true)
             }
     )
     public void evictCache() {

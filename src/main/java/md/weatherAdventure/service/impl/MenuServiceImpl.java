@@ -4,6 +4,7 @@ import md.weatherAdventure.dto.MenuDto;
 import md.weatherAdventure.entity.MenuEntity;
 import md.weatherAdventure.repository.MenuRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ public class MenuServiceImpl {
     MenuRepository menuRepository;
 
     @Autowired
+    @Cacheable( "menu")
     public void setMenuRepository(MenuRepository menuRepository) {
         this.menuRepository = menuRepository;
     }
