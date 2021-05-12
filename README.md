@@ -5,7 +5,7 @@
 - Spring Boot
 - Spring Cache
 - Spring Secutiry
-- Spring jpa
+- Spring Data
 - Spring Thymeleaf -for connect with Frontend
 #### Frontend
 -  Vue
