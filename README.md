@@ -2,10 +2,11 @@
 
 ### In this content 
 #### Backend
+- Spring Boot
 - Spring Cache
 - Spring Secutiry
 - Spring jpa
-- Spring Thymlyaf -for coonect with Frontend
+- Spring Thymeleaf -for connect with Frontend
 #### Frontend
 -  Vue
 -  Vuetify
